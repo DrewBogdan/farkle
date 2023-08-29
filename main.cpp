@@ -3,6 +3,8 @@ using namespace std;
 #include <iostream>
 #include <vector>
 
+// author - drew bogdan
+// enjoy :)
 
 bool check_saveable(int currdice[], int currsaved[], int index) {
     if (currdice[index] == 5 or currdice[index] == 1) {
