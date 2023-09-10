@@ -1,0 +1,6 @@
+# Files and directories for git to ignore by default
+# You can alays force it to use a file if needed
+
+# Ignore built binary
+farkle
+
