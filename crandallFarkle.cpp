@@ -10,7 +10,8 @@
 
 #include <iostream>
 #include <cstdlib>
-#include<ctime>
+#include <ctime>
+#include <cctype>
 
 using namespace std;
 
@@ -87,11 +88,12 @@ int main(int argc, char* argv[]) {
         isFarkle = false;
     }
 
-    int meldScore = 0;
+    int totalScore = 0;
     if( isFarkle ) {
         cout << "Farkle! Points: 0" << endl;
     } else {
         string userInput = "";
+        int meldScore = 0;
         int meld[6] = {0, 0, 0, 0, 0, 0};
         bool done = false;
 
@@ -135,16 +137,39 @@ cout << endl;
 cout << "                Meld Score: " << meldScore << endl;
 cout << endl;
 
-cout << " (B) Bank Meld, End Turn" << endl;
+cout << " (K) BanK Meld & End Round" << endl;
 cout << " (Q) Quit game" << endl;;
 cout << endl;
+cout << "Enter letters for your choice(s): ";
+cin >> userInput;
 
-            // Get user input
-            // Update status
-            done = true;
+// cout << "User entered: " << userInput;
+
+            for( int i = 0; i < userInput.length(); i++ ) {
+                char letter = toupper(userInput[i]);
+                if( letter >= 'A' && letter <= 'F' ) {
+                    int index = letter - 'A';
+                    if(dice[index] != 0) {
+                        meld[index] = dice[index];
+                        dice[index] = 0;
+                    } else {
+                        dice[index] = meld[index];
+                        meld[index] = 0;
+                    }
+                } else if(letter == 'Q') {
+                    done = true;
+                } else if(letter == 'K') {
+                    done = true;
+                    totalScore += meldScore;
+                }
+                
+            }
         }
-
     }
+
+    cout << endl;
+    cout << "Round over. Total score is now: " << totalScore << endl;
+    cout << endl;
 
 
 }
